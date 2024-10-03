@@ -1,3 +1,5 @@
+package at.htlgkr.print;
+
 import java.util.List;
 
 public interface Printable {

@@ -1,3 +1,5 @@
+package at.htlgkr.print;
+
 public class Weapon {
     private String name;
     private CombatType combatType;

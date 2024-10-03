@@ -1,3 +1,5 @@
+package at.htlgkr.print;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,12 +10,12 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.compare;
 
-public class Main {
+public class Main{
     public static void main(String[] args) throws IOException {
 
         List<Weapon> list = new ArrayList<>();
 
-        //Liste befüllen mit Weapon Objekte
+        //Liste befüllen mit at.htlgkr.print.Weapon Objekte
         list = Files.lines(new File("weapons.csv").toPath())
                 .skip(1)
                 .map(item -> item.split(";"))
@@ -31,14 +33,15 @@ public class Main {
         //Liste wird nach Damage sortiert
         list.sort((x1, x2) -> Integer.compare(x1.getDamage(), x2.getDamage()));
 
-        list.forEach(System.out::println);
-        System.out.println();
-
-        //Liste wird nach Alphabet von CombatType dann DamageType dann Name sortiert
+        //Liste wird nach Alphabet von at.htlgkr.print.CombatType dann at.htlgkr.print.DamageType dann Name sortiert
         list.sort(Comparator.comparing(Weapon::getCombatType)
                 .thenComparing(Weapon::getDamageType)
                 .thenComparing(Weapon::getName)
         );
-        list.forEach(System.out::println);
+
+
+        //Aufabe 1.5
+        Printable printable = list1 -> list1.forEach(System.out::println);
+        printable.print(list);
     }
 }
