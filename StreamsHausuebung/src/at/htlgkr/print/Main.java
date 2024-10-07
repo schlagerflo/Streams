@@ -41,7 +41,25 @@ public class Main{
 
 
         //Aufabe 1.5
-        Printable printable = list1 -> list1.forEach(System.out::println);
-        printable.print(list);
+        Printable printable15 = list15 -> list15.forEach(System.out::println);
+        printable15.print(list);
+
+        //Aufgabe 1.6
+        System.out.println();
+
+        //Aufgabe 1.7
+        list = Files.lines(new File("weapons.csv").toPath())
+                .skip(1)
+                .map(item -> item.split(";"))
+                .map(item -> new Weapon(
+                        item[0],
+                        CombatType.valueOf(item[1]),
+                        DamageType.valueOf(item[2]),
+                        Integer.parseInt(item[3]),
+                        Integer.parseInt(item[4]),
+                        Integer.parseInt(item[5]),
+                        Integer.parseInt(item[6])
+                ))
+                .collect(Collectors.toList());
     }
 }
